@@ -1,0 +1,16 @@
+name: TooManyTourneys
+version: ${version}
+main: dev.shadow.toomanytourneys.TooManyTourneys
+depend: [ProtocolLib]
+api-version: '1.21'
+
+commands:
+  TooManyTourneys:
+    aliases: [tmt]
+    usage: /<command> <reload|toggle>
+
+permissions:
+  TooManyTourneys.reload:
+    default: op
+  TooManyTourneys.toggle:
+    default: true
