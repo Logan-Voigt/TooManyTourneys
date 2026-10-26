@@ -3,11 +3,14 @@ package dev.shadow.toomanytourneys;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.*;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -70,5 +73,21 @@ public class TMTListeners extends PacketAdapter implements Listener {
         tooManyTourneys.shouldHide.remove(e.getPlayer().getUniqueId());
     }
 
+    // Both onChat and onCommand are to stop players from putting [TMT] in there messages.
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onChat(AsyncChatEvent event) {
+        String marker = this.marker;
+        if (marker.isEmpty()) return;
+        event.message(event.message().replaceText(b -> b.matchLiteral(marker).replacement("")));
+    }
+
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onCommand(PlayerCommandPreprocessEvent event) {
+        String marker = this.marker;
+        if (marker.isEmpty()) return;
+        if (event.getMessage().contains(marker)) {
+            event.setMessage(event.getMessage().replace(marker, ""));
+        }
+    }
 
 }
