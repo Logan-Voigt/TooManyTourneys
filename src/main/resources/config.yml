@@ -1,1 +1,10 @@
-Marker: "\u200B\u200C"
+# What ever you set this as, add it to each line of a message from what ever plugin you want the messages to be toggleable for.
+
+# Example of message file:
+#Message:
+#  - '[TMT]'
+#  - '[TMT]Started: {name}'
+#  - '[TMT]'
+#  - '[TMT]Message Type: {name}'
+#  - '[TMT]Time Left: {time}'
+Marker: "[TMT]"
