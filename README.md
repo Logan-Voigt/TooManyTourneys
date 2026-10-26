@@ -31,8 +31,6 @@ Originally built for PyroFarming and PyroFishingPro tournaments, but it works wi
 2. Open the message config of the plugin you want players to be able to hide.
 3. Put `[TMT]` at the **start** of every line, **including blank lines**.
 
-For example, in PyroFarming's tournament messages:
-
 ```yaml
 # Example of message file:
 Message:
